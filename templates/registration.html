@@ -1,0 +1,225 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Red Stream</title>
+    
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="static/logo.png">
+
+    <!-- Bootstrap CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+     <!-- Favicon for website icon -->
+     <link rel="shortcut icon" href="{% static 'images/logo.png' %}">
+    
+    <style>
+        /* Background image setup */
+    body {
+      background: url("{% static 'images/bg.jpg' %}") no-repeat center center fixed;
+      background-size: cover;
+    }
+
+        /* Registration Form Box */
+        .registration-form {
+            max-width: 1100px;
+            margin: auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1); /* Transparent Effect */
+            border-radius: 18px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px); /* Blur Effect */
+        }
+
+        /* Custom Button */
+        .btn-custom {
+            background-color: #ec9c3f;
+            width: 100%;
+            border-radius: 7px;
+            padding: 10px;
+        }
+        .btn-custom:hover {
+            background-color: #ca2626;
+        }
+        /* Footer Styles */
+        footer {
+            background: #222;
+            padding: 40px 0;
+            color: white;
+            text-align: center;
+        }
+
+        /* Footer Links */
+        footer a {
+            color: #d14606;
+            text-decoration: none;
+        }
+
+        /* Footer Link Hover Effect */
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+ <!-- Navigation Bar -->
+ <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <!-- Logo -->
+      <a class="navbar-brand" href="{% url 'home' %}">
+        <img src="{% static 'images/logo.png' %}" alt="Logo" width="110">
+      </a>
+
+      <!-- Mobile menu toggle button -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- Navigation links -->
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">HOME</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'registration' %}">REGISTER</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'finddoner' %}">FIND DONOR</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'whydoanate' %}">WHY DONATE BLOOD</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'canyoudonate' %}">CAN YOU DONATE</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'contact' %}">CONTACT US</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'Donors' %}">ACTIVE DONORS</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">LOGOUT</a></li>
+            <li class="nav-item"><a class="nav-link btn btn-danger text-white" href="{% url 'emergency' %}">It's an emergency!</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+<!-- Registration Form -->
+<div class="container my-5">
+    <div class="registration-form p-4">
+        <h2 class="text-center mb-4">Register as a Donor</h2>
+        <form  method="post">
+            {% csrf_token %}
+            <div class="row">
+                <!-- Login Information -->
+                <div class="col-md-4">
+                    <h4>Login Information</h4>
+                    <label>Full Name</label>
+                    <input type="text" class="form-control" name="fullname" required>
+
+                    <label>Mobile Number</label>
+                    <input type="tel" class="form-control" name="mobile" required>
+
+                    <label>Email</label>
+                    <input type="email" class="form-control" name="email" required>
+
+                </div>
+
+                <!-- Donation Information -->
+                <div class="col-md-4">
+                    <h4>Donation Info</h4>
+                    <label>Blood Group</label>
+                    <select class="form-control" name="registerbloodgroup">
+                        <option>Select Group</option>
+                        <option>A+</option><option>A-</option>
+                        <option>B+</option><option>B-</option>
+                        <option>O+</option><option>O-</option>
+                        <option>AB+</option><option>AB-</option>
+                    </select>
+
+                    <label>Birth Date</label>
+                    <input type="date" class="form-control" name="registerbirthdate" required>
+
+                    <label>Gender</label>
+                    <select class="form-control" name="gender">
+                        <option>Male</option>
+                        <option>Female</option>
+                        <option>Other</option>
+                    </select>
+
+                    <label>Weight</label>
+                    <select class="form-control" name="registerweight">
+                        <option>Select Weight</option>
+                        <option>45-50 kg</option>
+                        <option>50-60 kg</option>
+                        <option>60-70 kg</option>
+                        <option>Above 70 kg</option>
+                    </select>
+                </div>
+
+                <!-- Contact Information -->
+                <div class="col-md-4">
+                    <h4>Contact Information</h4>
+                    <label>State</label>
+                    <select class="form-control" name="registerstate">
+                        <option>Kerala</option>
+                    </select>
+
+                    <label>District</label>
+                    <select class="form-control" name="registerdistrict">
+                        <option>Select District</option>
+                        <option>Kasargod</option>
+                        <option>kannur</option>
+                        <option>Wayanad</option>
+                        <option>Kozhikode</option>
+                        <option>Malappuram</option>
+                        <option>Palakkad</option>
+                        <option>Thrissur</option>
+                        <option>Ernakulam</option>
+                        <option>idykki</option>
+                        <option>Kottayam</option>
+                        <option>Alappuzha</option>
+                        <option>Pathanamthitta</option>
+                        <option>Kollam</option>
+                        <option>Thiruvananthapuram</option>
+                    </select>
+
+                    <label>PIN Code</label>
+                    <input type="text" class="form-control" name="pincode" required>
+                </div>
+            </div>
+            <div class="text-center mt-4">
+                <button type="submit" class="btn btn-custom">Register</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% if messages %}
+        {% for message in messages %}
+         {% if message.tags %}  <script>alert("{{ message }}")</script> {% endif %}
+         
+        {% endfor %}
+    
+{% endif %}
+
+
+<footer class="mt-5">
+    <div class="container">
+        <div class="row">
+            <!-- Useful Links -->
+            <div class="col-md-4">
+                <h5>USEFUL LINKS</h5>
+                <a href="{% url 'home' %}">Home</a> | 
+                <a href="{% url 'registration' %}">Register</a> |
+                <a href="{% url 'finddoner' %}">finddoner</a>  |
+                <a href="{% url 'whydoanate' %}">Why Donate Blood</a> | 
+                <a href="{% url 'canyoudonate' %}">Can You Donate</a> | 
+                <a href="{% url 'contact' %}">Contact</a> | 
+                <a href="{% url 'emergency' %}">Contact</a>
+            </div>
+      <!-- Contact Information Section -->
+      <div class="col-md-4">
+        <h5>CONTACT</h5>
+        <p>Valanchery, Kozhikode Road, Near Taluk Hospital, Malappuram, Kerala</p>
+        <p>Contact: +91 01234 56789</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

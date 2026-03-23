@@ -1,0 +1,184 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Red Stream - Ambulance Services</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Favicon for website icon -->
+    <link rel="shortcut icon" href="{% static 'images/logo.png' %}">
+
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #121212;
+            color: white;
+        }
+
+        /* Custom Button Style */
+        .btn-custom {
+            background-color: rgb(54, 46, 46);
+            border-radius: 7px;
+            color: white;
+            border: 2px solid #383838;
+            font-size: 18px;
+            padding: 10px 20px;
+        }
+
+        /* Button Hover Effect */
+        .btn-custom:hover {
+            background-color: #d14606;
+            color: white;
+        }
+
+        /* Box Styling with Glassmorphism Effect */
+        .box {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        /* Footer Styles */
+        footer {
+            background: #222;
+            padding: 40px 0;
+            color: white;
+            text-align: center;
+        }
+
+        /* Footer Links */
+        footer a {
+            color: #d14606;
+            text-decoration: none;
+        }
+
+        /* Footer Link Hover Effect */
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+ <!-- Navigation Bar -->
+ <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <!-- Logo -->
+      <a class="navbar-brand" href="{% url 'home' %}">
+        <img src="{% static 'images/logo.png' %}" alt="Logo" width="110">
+      </a>
+
+      <!-- Mobile menu toggle button -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- Navigation links -->
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">HOME</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'registration' %}">REGISTER</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'finddoner' %}">FIND DONOR</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'whydoanate' %}">WHY DONATE BLOOD</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'canyoudonate' %}">CAN YOU DONATE</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'contact' %}">CONTACT US</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'Donors' %}">ACTIVE DONORS</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">LOGOUT</a></li>
+            <li class="nav-item"><a class="nav-link btn btn-danger text-white" href="{% url 'emergency' %}">It's an emergency!</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+<!-- Ambulance Services Section -->
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 text-center bg-light text-dark p-4 rounded shadow">
+            <h2 class="text-secondary">AMBULANCE SERVICES</h2>
+            <p>Here are the contact numbers for our ambulance services:</p>
+            <ul class="list-unstyled">
+                <li>Ambulance Central Head - Call <a class="text-danger" href="tel:7558951351">7558951351</a></li>
+                <li>Service 1 - Call <a class="text-danger" href="tel:+919633801753">+919633801753</a></li>
+                <li>Service 2 - Call <a class="text-danger" href="tel:+917558089724">+917558089724</a></li>
+                <li>Service 3 - Call <a class="text-danger" href="tel:+917947119770">+917947119770</a></li>
+            </ul>
+            <button class="btn btn-custom mt-2" onclick="callAmbulance()">Call Ambulance Center</button>
+        </div>
+    </div>
+</div>
+
+<!-- Additional Information Boxes -->
+<div class="container">
+    <div class="row">
+        <!-- Our Ambulance Services -->
+        <div class="col-md-4">
+            <div class="box p-3">
+                <h4>Our Ambulance Services</h4>
+                <p>At Red Stream, we are committed to providing the best ambulance services. Our ambulances are staffed by highly experienced drivers and paramedics.</p>
+            </div>
+        </div>
+        <!-- Emergency Medical Services -->
+        <div class="col-md-4">
+            <div class="box p-3">
+                <h4>Emergency Medical Services</h4>
+                <p>We also provide emergency medical services. If you or a loved one needs blood, contact us immediately.</p>
+            </div>
+        </div>
+        <!-- Blood Donation Call to Action -->
+        <div class="col-md-4">
+            <div class="box p-3">
+                <h4>Donate Blood, Save Lives</h4>
+                <p>Did you know that in Kerala, 1.5 lakh blood donors are needed each month? <a href="registration.html" class="text-danger">Register here</a> to donate blood today.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Footer Section -->
+<footer class="mt-5">
+    <div class="container">
+        <div class="row">
+            <!-- Useful Links -->
+            <div class="col-md-4">
+                <h5>USEFUL LINKS</h5>
+                <a href="{% url 'home' %}">Home</a> | 
+                <a href="{% url 'registration' %}">Register</a> |
+                <a href="{% url 'finddoner' %}">finddoner</a>  |
+                <a href="{% url 'whydoanate' %}">Why Donate Blood</a> | 
+                <a href="{% url 'canyoudonate' %}">Can You Donate</a> | 
+                <a href="{% url 'contact' %}">Contact</a> | 
+                <a href="{% url 'emergency' %}">Contact</a>
+            </div>
+            <!-- Contact Information -->
+            <div class="col-md-4">
+                <h5>CONTACT</h5>
+                <p>231, Vaikom Road, Near Thaluk Hospital<br>Kottayam, Kerala, IN<br>Contact: +91 7558 9513 51</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Call Ambulance Script -->
+<script>
+    function callAmbulance() {
+        window.location.href = "tel:7558951351";
+    }
+</script>
+
+</body>
+</html>

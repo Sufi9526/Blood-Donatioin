@@ -1,0 +1,235 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Character encoding set to UTF-8 -->
+  <meta charset="UTF-8">
+  
+  <!-- Responsive meta tag to ensure mobile compatibility -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <!-- Page title -->
+  <title>Home</title>
+  
+  <!-- Bootstrap CSS for styling -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+   <!-- Favicon for website icon -->
+    <link rel="shortcut icon" href="{% static 'images/logo.png' %}">
+  <style>
+    /* Background image setup */
+    body {
+      background: url("{% static 'images/bg.jpg' %}") no-repeat center center fixed;
+      background-size: cover;
+    }
+
+  /* Center aligning text inside a flex container */
+  .container-fluid {
+    position: relative;
+    min-height: 20vh; /* Responsive height */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  /* Styling for main heading text */
+  .text-box h1, .blood h1 {
+    font-size: clamp(30px, 23vw, 50px); /* Responsive font size */
+    font-weight: bold;
+  }
+
+  /* Animated text effect */
+  .text-box h1 {
+    color: #ff004c;
+    animation: animate 1s ease-in-out infinite;
+  }
+
+  /* Keyframes for animated text */
+  @keyframes animate {
+    0%,100% {
+      clip-path: polygon(0% 45%, 15% 44%, 32% 50%, 54% 60%, 70% 61%, 84% 59%, 100% 52%, 100% 100%, 0% 100%);
+    }
+    50% {
+      clip-path: polygon(0 60%, 16% 65%, 34% 66%, 51% 62%, 67% 50%, 84% 45%, 100% 46%, 100% 100%, 0% 100%);
+    }
+  }
+
+  /* Outline text effect */
+  .blood h1 {
+    color: transparent;
+    -webkit-text-stroke: 2px #ff004c;
+  }
+
+  /* Position both text layers absolutely inside container */
+  .text-box, .blood {
+    position: absolute;
+  }
+
+  /* Section heading styling */
+  .section-heading {
+    color: #d9534f;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  /* Highlighted text */
+  .highlight-text {
+    color: #ff004c;
+    font-weight: bold;
+  }
+
+  /* List item margin adjustment */
+  .custom-list li {
+    margin-bottom: 10px;
+  }
+
+  /* Custom box design */
+  .custom-box {
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 8px;
+  }
+  /* Footer Styles */
+        footer {
+            background: #222;
+            padding: 40px 0;
+            color: white;
+            text-align: center;
+            justify-content: center;
+        }
+
+        /* Footer Links */
+        footer a {
+            color: #d14606;
+            text-decoration: none;
+        }
+
+        /* Footer Link Hover Effect */
+        footer a:hover {
+            text-decoration: underline;
+        }
+  </style>
+
+</head>
+
+<body>
+  <!-- Navigation Bar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <!-- Logo -->
+      <a class="navbar-brand" href="{% url 'home' %}">
+        <img src="{% static 'images/logo.png' %}" alt="Logo" width="110">
+      </a>
+
+      <!-- Mobile menu toggle button -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- Navigation links -->
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">HOME</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'registration' %}">REGISTER</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'finddoner' %}">FIND DONOR</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'whydoanate' %}">WHY DONATE BLOOD</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'canyoudonate' %}">CAN YOU DONATE</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'contact' %}">CONTACT US</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'Donors' %}">ACTIVE DONORS</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">LOGOUT</a></li>
+            <li class="nav-item"><a class="nav-link btn btn-danger text-white" href="{% url 'emergency' %}">It's an emergency!</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section with animated text -->
+  <div class="container-fluid">
+    <div class="text-box">
+      <h1>RED STREAM</h1>
+    </div>
+    <div class="blood">
+      <h1>RED STREAM</h1>
+    </div>
+  </div>
+{% if messages %}
+        {% for message in messages %}
+         {% if message.tags %}  <script>alert("{{ message }}")</script> {% endif %}
+         
+        {% endfor %}
+    
+{% endif %}
+
+
+  <div class="container py-5">
+    <!-- Section 1: Introduction -->
+    <div class="text-center mb-4">
+      <h2 class="section-heading">Donation Process</h2>
+      <h4>REGISTER TO BE A <span class="highlight-text">BLOOD DONOR</span><br>TODAY!</h4>
+      <p>Giving blood is simple and it saves lives. When you give blood, it is collected so it can be used to treat someone else.</p>
+    </div>
+
+    <!-- Section 2: Before You Give Blood -->
+    <div class="custom-box mb-4">
+      <h2 class="section-heading">Before You Give Blood</h2>
+      <ul class="custom-list">
+        <li>Check if you are eligible to donate blood.</li>
+        <li>Register your interest or call <b>0300 123 23 23</b>.</li>
+        <li>Log in to your online account and book an appointment.</li>
+        <li>Follow the guidelines to prepare for blood donation.</li>
+      </ul>
+    </div>
+
+    <!-- Section 3: When You Give Blood -->
+    <div class="custom-box mb-4">
+      <h2 class="section-heading">When You Give Blood</h2>
+
+      <h3>Welcome and Preparation</h3>
+      <p>Bring your completed safety form and read the donor booklet.</p>
+
+      <h3>Health Screening</h3>
+      <ul class="custom-list">
+        <li>Identity verification and health checkup.</li>
+        <li>Iron level (hemoglobin) test.</li>
+        <li>If unable to donate, staff will advise you accordingly.</li>
+      </ul>
+
+      <h3>Your Blood Donation</h3>
+      <ul class="custom-list">
+        <li>A needle is inserted into your vein to collect blood.</li>
+        <li>No pain should be felt, inform staff if any discomfort.</li>
+        <li>Blood donation takes around 5-10 minutes.</li>
+      </ul>
+    </div>
+  </div>
+
+<!-- Footer Section -->
+<footer class="mt-5">
+  <div class="container">
+      <div class="row">
+          <!-- Useful Links -->
+          <div class="col-md-4">
+              <h5>USEFUL LINKS</h5>
+              <a href="{% url 'home' %}">Home</a> | 
+              <a href="{% url 'registration' %}">Register</a> |
+              <a href="{% url 'finddoner' %}">finddoner</a>  |
+              <a href="{% url 'whydoanate' %}">Why Donate Blood</a> | 
+              <a href="{% url 'canyoudonate' %}">Can You Donate</a> | 
+              <a href="{% url 'contact' %}">Contact</a> | 
+              <a href="{% url 'emergency' %}">Contact</a>
+          </div>
+      <!-- Contact Information Section -->
+      <div class="col-md-4">
+        <h5>CONTACT</h5>
+        <p>Valanchery, Kozhikode Road, Near Taluk Hospital, Malappuram, Kerala</p>
+        <p>Contact: +91 01234 56789</p>
+      </div>
+    </div>
+  </div>
+</footer>
+  <!-- Bootstrap JS for interactive components -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
